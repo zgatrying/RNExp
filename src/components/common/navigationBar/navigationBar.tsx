@@ -142,13 +142,13 @@ export default class navigationBar extends Component<Props> {
 
   getNavContentStyle() {
     const {
-      Android_translucent
+      Android_translucent,
     } = this.props;
     let addAndroidStatusPadding = Android_translucent && deviceInfo.deviceOS === 'android';
     return [
       styles.navContentStyle,
       {
-        marginTop: addAndroidStatusPadding ? commonStyle.navStatusBarHeight + commonStyle.androidStatusBarHeight : commonStyle.navStatusBarHeight,
+        marginTop: addAndroidStatusPadding ? commonStyle.navStatusBarHeight + commonStyle.androidStatusBarHeight : commonStyle.navStatusBarHeight
       }
     ]
   }
@@ -200,7 +200,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: commonStyle.navStatusBarHeight,
     height: commonStyle.navContentHeight,
     marginLeft: commonStyle.navMarginLeft,
     marginRight: commonStyle.navMarginRight,

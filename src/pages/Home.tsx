@@ -4,12 +4,14 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   BackHandler,
   ToastAndroid
 } from 'react-native'
 import { observer } from 'mobx-react'
 import BaseComponent from '../components/Base/BaseComponent'
 import { NavigationEvents } from 'react-navigation'
+import NavigationService from '../NavigationService';
 
 let lastBackPressed = Date.now()
 
@@ -29,10 +31,9 @@ export default class Home extends BaseComponent {
       onLeftPress: () => {
         console.log('open drawer')
       },
-      float: true,
-      StatusBarStyle: 'light-content',
+      StatusBarStyle: 'dark-content',
       titleStyle: {
-        color: '#fff'
+        color: '#000'
       }
     }
   }
@@ -56,6 +57,10 @@ export default class Home extends BaseComponent {
     }
   }
 
+  goPage1() {
+    NavigationService.navigate('Page1')
+  }
+
   _render() {
     return (
       <View style={styles.container}>
@@ -69,6 +74,7 @@ export default class Home extends BaseComponent {
         }}></View>
         <View style={styles.content}>
           <Text>Welcome to React Native</Text>
+          <Button title="goPage1" onPress={this.goPage1} />
         </View>
       </View>
     );

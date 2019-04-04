@@ -4,14 +4,15 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  AsyncStorage,
 } from 'react-native'
 import { observer } from 'mobx-react'
 import BaseComponent from '../components/Base/BaseComponent'
 import NavigationService from '../NavigationService';
 
 @observer
-export default class Home extends BaseComponent {
+export default class Login extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -23,16 +24,20 @@ export default class Home extends BaseComponent {
       title: '登录',
       hiddenLeftItem: true,
       Android_translucent: true,
-      float: true,
       StatusBarStyle: 'dark-content',
       titleStyle: {
-        color: '#fff'
+        color: '#000'
       }
     }
   }
 
   gotoRegister() {
     NavigationService.navigate('Register')
+  }
+
+  async login() {
+    await AsyncStorage.setItem('token', 'true')
+    NavigationService.navigate('Home')
   }
 
   _render() {
@@ -45,6 +50,7 @@ export default class Home extends BaseComponent {
         <View style={styles.content}>
           <Text>Welcome to React Native</Text>
           <Button title="gotoRegister" onPress={this.gotoRegister} />
+          <Button title="login" onPress={this.login} />
         </View>
       </View>
     );

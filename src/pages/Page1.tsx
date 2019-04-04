@@ -4,15 +4,14 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
-  AsyncStorage
+  Button
 } from 'react-native'
 import { observer } from 'mobx-react'
 import BaseComponent from '../components/Base/BaseComponent'
-import NavigationService from '../NavigationService';
+import NavigationService from '../NavigationService'
 
 @observer
-export default class Mine extends BaseComponent {
+export default class Page1 extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -21,18 +20,21 @@ export default class Mine extends BaseComponent {
 
   navigationBarProps() {
     return {
-      title: '我的',
-      hiddenLeftItem: true,
-      StatusBarStyle: 'dark-content',
+      title: 'Page1',
+      Android_translucent: true,
+      StatusBarStyle: 'light-content',
       titleStyle: {
         color: '#000'
       }
     }
   }
 
-  async logout() {
-    await AsyncStorage.removeItem('token')
-    NavigationService.navigate('Login')
+  goBack() {
+    NavigationService.goBack()
+  }
+
+  go(routeName) {
+    NavigationService.navigate(routeName)
   }
 
   _render() {
@@ -43,8 +45,10 @@ export default class Mine extends BaseComponent {
           backgroundColor: '#00f',
         }}></View>
         <View style={styles.content}>
-          <Button title="logout" onPress={this.logout} />
           <Text>Welcome to React Native</Text>
+          <Button title="goback" onPress={this.goBack} />
+          <Button title="goHome" onPress={this.go.bind(this, 'Home')} />
+          <Button title="goMine" onPress={this.go.bind(this, 'Mine')} />
         </View>
       </View>
     );

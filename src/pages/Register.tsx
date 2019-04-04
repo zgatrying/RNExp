@@ -11,7 +11,7 @@ import BaseComponent from '../components/Base/BaseComponent'
 import NavigationService from '../NavigationService'
 
 @observer
-export default class Home extends BaseComponent {
+export default class Register extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -21,18 +21,16 @@ export default class Home extends BaseComponent {
   navigationBarProps() {
     return {
       title: '注册',
-      hiddenLeftItem: true,
       Android_translucent: true,
-      float: true,
       StatusBarStyle: 'light-content',
       titleStyle: {
-        color: '#fff'
+        color: '#000'
       }
     }
   }
 
   goBack() {
-    NavigationService.pop(1)
+    NavigationService.goBack()
   }
 
   goHome() {
